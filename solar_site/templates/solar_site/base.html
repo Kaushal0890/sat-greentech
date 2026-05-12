@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page_title }}</title>
+    <meta name="description" content="{{ meta_description }}">
+    <meta name="keywords" content="solar company, solar EPC, rooftop solar, solar installation, solar panels, inverter, Sat GreenTech">
+    <meta name="theme-color" content="#0b2242">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    <meta property="og:title" content="{{ page_title }}">
+    <meta property="og:description" content="{{ meta_description }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'solar_site/images/sgpl-logo-cropped.png' %}">
+    <link rel="icon" href="{% static 'solar_site/images/sgpl-logo-cropped.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="{% static 'solar_site/css/site.css' %}">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "{{ company.name }}",
+        "image": "{{ request.scheme }}://{{ request.get_host }}{% static 'solar_site/images/sgpl-logo-cropped.png' %}",
+        "telephone": ["+91{{ company.phone_primary }}", "+91{{ company.phone_secondary }}"],
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "{{ company.address }}",
+            "addressCountry": "IN"
+        },
+        "url": "{{ request.build_absolute_uri }}",
+        "founder": "{{ company.owner }}"
+    }
+    </script>
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    <div class="site-shell">
+        <header class="site-header" data-site-header>
+            <div class="topbar">
+                <div class="container topbar__inner">
+                    <p>Trusted solar EPC solutions for homes, businesses, and industry.</p>
+                    <div class="topbar__links">
+                        <a href="tel:+91{{ company.phone_primary }}">Call {{ company.phone_display_primary }}</a>
+                        <a href="{% url 'quote' %}">Free Consultation</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-wrap">
+                <div class="container nav">
+                    <a href="{% url 'home' %}" class="brand" aria-label="Sat GreenTech Home">
+                        <img src="{% static 'solar_site/images/sgpl-logo-cropped.png' %}" alt="Sat GreenTech Pvt. Ltd. logo">
+                        <div>
+                            <span>Sat GreenTech</span>
+                            <small>Private Limited</small>
+                        </div>
+                    </a>
+                    <button class="nav-toggle" type="button" aria-label="Open menu" data-nav-toggle>
+                        <i class="ri-menu-line"></i>
+                    </button>
+                    <nav class="main-nav" data-nav-menu>
+                        <a href="{% url 'home' %}" {% if active_page == 'home' %}class="is-active"{% endif %}>Home</a>
+                        <a href="{% url 'about' %}" {% if active_page == 'about' %}class="is-active"{% endif %}>About Us</a>
+                        <a href="{% url 'services' %}" {% if active_page == 'services' %}class="is-active"{% endif %}>Services</a>
+                        <a href="{% url 'products' %}" {% if active_page == 'products' %}class="is-active"{% endif %}>Solar Products</a>
+                        <a href="{% url 'projects' %}" {% if active_page == 'projects' %}class="is-active"{% endif %}>Projects / Gallery</a>
+                        <a href="{% url 'why_choose' %}" {% if active_page == 'why_choose' %}class="is-active"{% endif %}>Why Choose Us</a>
+                        <a href="{% url 'brands' %}" {% if active_page == 'brands' %}class="is-active"{% endif %}>Brands</a>
+                        <a href="{% url 'contact' %}" {% if active_page == 'contact' %}class="is-active"{% endif %}>Contact</a>
+                        <a href="{% url 'quote' %}" class="button button--sm">Get Free Quote</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="site-footer">
+            <div class="container footer-grid">
+                <div>
+                    <a href="{% url 'home' %}" class="brand brand--footer">
+                        <img src="{% static 'solar_site/images/sgpl-logo-cropped.png' %}" alt="Sat GreenTech Pvt. Ltd. logo">
+                        <div>
+                            <span>Sat GreenTech</span>
+                            <small>Private Limited</small>
+                        </div>
+                    </a>
+                    <p class="footer-copy">{{ company.tagline }}</p>
+                    <ul class="footer-contact">
+                        <li><i class="ri-map-pin-2-line"></i><span>{{ company.address }}</span></li>
+                        <li><i class="ri-phone-line"></i><a href="tel:+91{{ company.phone_primary }}">+91 {{ company.phone_display_primary }}</a></li>
+                        <li><i class="ri-phone-line"></i><a href="tel:+91{{ company.phone_secondary }}">+91 {{ company.phone_display_secondary }}</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="{% url 'about' %}">About Us</a>
+                        <a href="{% url 'services' %}">Services</a>
+                        <a href="{% url 'products' %}">Solar Products</a>
+                        <a href="{% url 'projects' %}">Projects / Gallery</a>
+                        <a href="{% url 'contact' %}">Contact Us</a>
+                    </div>
+                </div>
+                <div>
+                    <h3>Core Strengths</h3>
+                    <div class="footer-links">
+                        <span>Heavy-duty structure work</span>
+                        <span>Trusted solar panel and inverter brands</span>
+                        <span>Fast local installation service</span>
+                        <span>Long-term panel and inverter warranty</span>
+                    </div>
+                </div>
+            </div>
+            <div class="container footer-bottom">
+                <p>© {% now "Y" %} Sat GreenTech Pvt. Ltd. All rights reserved.</p>
+                <div class="footer-bottom__links">
+                    <a href="{% url 'sitemap_xml' %}">Sitemap</a>
+                    <a href="{% url 'robots_txt' %}">Robots</a>
+                    <a href="{% url 'quote' %}">Request Quote</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <a class="floating-whatsapp" href="https://wa.me/{{ company.whatsapp }}?text=Hello%20Sat%20GreenTech,%20I%20want%20a%20solar%20quote." target="_blank" rel="noopener">
+        <i class="ri-whatsapp-line"></i>
+        <span>WhatsApp</span>
+    </a>
+
+    <div class="mobile-action-bar">
+        <a href="tel:+91{{ company.phone_primary }}">
+            <i class="ri-phone-fill"></i>
+            <span>Call Now</span>
+        </a>
+        <a href="https://wa.me/{{ company.whatsapp }}?text=Hello%20Sat%20GreenTech,%20I%20want%20a%20solar%20quote." target="_blank" rel="noopener">
+            <i class="ri-whatsapp-line"></i>
+            <span>WhatsApp</span>
+        </a>
+        <a href="{% url 'quote' %}">
+            <i class="ri-file-list-3-line"></i>
+            <span>Quote</span>
+        </a>
+    </div>
+
+    <div class="toast" data-toast></div>
+
+    <script src="{% static 'solar_site/js/site.js' %}"></script>
+</body>
+</html>

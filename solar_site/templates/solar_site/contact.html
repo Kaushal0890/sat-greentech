@@ -1,0 +1,90 @@
+{% extends "solar_site/base.html" %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <p class="eyebrow">Contact Us</p>
+        <h1>Let’s plan the right solar solution for your site.</h1>
+        <p>Call, message, or send an inquiry for system advice, service support, or a free project discussion with the Sat GreenTech team.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container contact-layout">
+        <div class="contact-card" data-reveal>
+            <h2>Sat GreenTech Pvt. Ltd.</h2>
+            <ul class="detail-list">
+                <li><span>Address</span><strong>{{ company.address }}</strong></li>
+                <li><span>Phone</span><strong><a href="tel:+91{{ company.phone_primary }}">{{ company.phone_display_primary }}</a></strong></li>
+                <li><span>Phone</span><strong><a href="tel:+91{{ company.phone_secondary }}">{{ company.phone_display_secondary }}</a></strong></li>
+                <li><span>WhatsApp</span><strong><a href="https://wa.me/{{ company.whatsapp }}" target="_blank" rel="noopener">Chat instantly</a></strong></li>
+            </ul>
+            <div class="contact-card__actions">
+                <a class="button" href="tel:+91{{ company.phone_primary }}">Call Now</a>
+                <a class="button button--secondary" href="https://wa.me/{{ company.whatsapp }}?text=Hello%20Sat%20GreenTech,%20I%20want%20more%20details." target="_blank" rel="noopener">WhatsApp Inquiry</a>
+            </div>
+        </div>
+
+        <div class="form-card" data-reveal>
+            <div class="form-card__head">
+                <h2>Send Inquiry</h2>
+                <p>We will get back to you quickly with product guidance, service support, or a suitable solar recommendation.</p>
+            </div>
+            <form class="site-form" data-api-form data-api-endpoint="/api/contact">
+                <div class="form-grid">
+                    <label>
+                        <span>Name</span>
+                        <input type="text" name="name" placeholder="Your name" required>
+                    </label>
+                    <label>
+                        <span>Phone</span>
+                        <input type="tel" name="phone" placeholder="Mobile number" required>
+                    </label>
+                    <label>
+                        <span>Email</span>
+                        <input type="email" name="email" placeholder="Optional email">
+                    </label>
+                    <label>
+                        <span>System Type</span>
+                        <select name="system_type">
+                            <option value="">Select service type</option>
+                            <option>Residential Solar System</option>
+                            <option>Commercial Solar System</option>
+                            <option>Industrial Solar System</option>
+                            <option>On-Grid Solar System</option>
+                            <option>Off-Grid Solar System</option>
+                            <option>Hybrid Solar System</option>
+                            <option>Solar Maintenance & Service</option>
+                            <option>Solar Structure Installation</option>
+                        </select>
+                    </label>
+                    <label class="form-grid__full">
+                        <span>Address</span>
+                        <input type="text" name="address" placeholder="Site address">
+                    </label>
+                    <label class="form-grid__full">
+                        <span>Message</span>
+                        <textarea name="message" rows="5" placeholder="Tell us about your requirement" required></textarea>
+                    </label>
+                </div>
+                <button type="submit" class="button">Submit Inquiry</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="section section--alt">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Find Us</p>
+                <h2>Visit our location in Bhesan.</h2>
+            </div>
+            <a href="{{ company.map_link }}" class="text-link" target="_blank" rel="noopener">Open Google Map</a>
+        </div>
+        <div class="map-frame" data-reveal>
+            <iframe src="{{ company.map_embed }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Sat GreenTech location"></iframe>
+        </div>
+    </div>
+</section>
+{% endblock %}

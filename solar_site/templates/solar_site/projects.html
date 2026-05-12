@@ -1,0 +1,36 @@
+{% extends "solar_site/base.html" %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <p class="eyebrow">Projects / Gallery</p>
+        <h1>Installations that reflect neat execution and strong engineering.</h1>
+        <p>Our project gallery highlights solar work across homes, commercial properties, and industrial sites with a focus on structure strength and reliable output.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container card-grid card-grid--projects">
+        {% for project in projects %}
+        <article class="project-card project-card--page" data-reveal>
+            <div class="project-cover project-cover--{{ project.category|default:'residential' }}">
+                {% if project.image %}
+                <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                {% else %}
+                <span>{{ project.location }}</span>
+                {% endif %}
+            </div>
+            <div class="project-card__body">
+                <div class="project-meta">
+                    <span>{% if project.get_category_display %}{{ project.get_category_display }}{% else %}{{ project.category|title }}{% endif %}</span>
+                    {% if project.capacity_kw %}<span>{{ project.capacity_kw }} kW</span>{% endif %}
+                    {% if project.completion_date %}<span>{{ project.completion_date }}</span>{% endif %}
+                </div>
+                <h2>{{ project.title }}</h2>
+                <p>{{ project.description }}</p>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

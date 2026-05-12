@@ -1,0 +1,228 @@
+{% extends "solar_site/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="container hero-grid">
+        <div class="hero-copy" data-reveal>
+            <p class="eyebrow">Solar EPC Company in Bhesan</p>
+            <h1>{{ company.hero_heading }}</h1>
+            <p class="hero-lead">{{ company.hero_subheading }}</p>
+            <div class="hero-actions">
+                <a href="{% url 'quote' %}" class="button">Get Free Quote</a>
+                <a href="tel:+91{{ company.phone_primary }}" class="button button--secondary">Call Now</a>
+                <a href="{% url 'services' %}" class="button button--ghost">View Services</a>
+            </div>
+            <div class="hero-points">
+                <span><i class="ri-shield-check-line"></i> Trusted brands</span>
+                <span><i class="ri-hammer-line"></i> Strong structure</span>
+                <span><i class="ri-time-line"></i> Fast service support</span>
+            </div>
+        </div>
+        <div class="hero-visual" data-reveal>
+            <div class="hero-card hero-card--main">
+                <img src="{% static 'solar_site/images/hero-solar.svg' %}" alt="Solar rooftop illustration">
+            </div>
+            <div class="hero-card hero-card--stat">
+                <strong>25 Years</strong>
+                <span>Panel performance confidence</span>
+            </div>
+            <div class="hero-card hero-card--stat-alt">
+                <strong>2000+</strong>
+                <span>Customers served with local support</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--tight">
+    <div class="container stats-grid">
+        {% for stat in stats %}
+        <article class="stat-card" data-reveal>
+            <strong>{{ stat.value }}</strong>
+            <span>{{ stat.label }}</span>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="section">
+    <div class="container split-grid">
+        <div data-reveal>
+            <p class="eyebrow">About Sat GreenTech</p>
+            <h2>Engineered for performance, built for long-term trust.</h2>
+            <p>Sat GreenTech Pvt. Ltd. provides solar EPC solutions for residential, commercial, and industrial requirements. We focus on dependable structure quality, trusted components, clean execution, and responsive service after installation.</p>
+            <div class="info-pills">
+                <span>Owner: {{ company.owner }}</span>
+                <span>Co-Owners: {{ company.co_owners|join:", " }}</span>
+                <span>Bhesan, Gujarat</span>
+            </div>
+        </div>
+        <div class="feature-panel" data-reveal>
+            <div class="feature-panel__item">
+                <i class="ri-sun-line"></i>
+                <div>
+                    <h3>End-to-End Solar Delivery</h3>
+                    <p>Consultation, structure, installation, testing, and support in one coordinated team.</p>
+                </div>
+            </div>
+            <div class="feature-panel__item">
+                <i class="ri-flashlight-line"></i>
+                <div>
+                    <h3>Built Around Real Savings</h3>
+                    <p>System planning that balances electricity usage, budget, and long-term output.</p>
+                </div>
+            </div>
+            <div class="feature-panel__item">
+                <i class="ri-customer-service-2-line"></i>
+                <div>
+                    <h3>Responsive Local Support</h3>
+                    <p>Nearby service and faster follow-up for installation, maintenance, and customer care.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--alt">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Our Services</p>
+                <h2>Solar systems and structure work tailored to every site.</h2>
+            </div>
+            <a href="{% url 'services' %}" class="text-link">See all services</a>
+        </div>
+        <div class="card-grid card-grid--services">
+            {% for service in services %}
+            <article class="service-card" data-reveal>
+                <div class="icon-badge"><i class="{% if service.icon %}{{ service.icon }}{% else %}ri-sun-foggy-line{% endif %}"></i></div>
+                <h3>{% if service.title %}{{ service.title }}{% else %}{{ service.title }}{% endif %}</h3>
+                <p>{% if service.short_description %}{{ service.short_description }}{% else %}{{ service.short_description }}{% endif %}</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Solar Products</p>
+                <h2>Only dependable brands for panels, inverters, wiring, and structure.</h2>
+            </div>
+            <a href="{% url 'brands' %}" class="text-link">View all brands</a>
+        </div>
+        <div class="brand-group-grid">
+            {% for key, group in grouped_brands.items %}
+            <article class="brand-group" data-reveal>
+                <h3>{{ group.title }}</h3>
+                <div class="brand-chip-wrap">
+                    {% for brand in group.items %}
+                    <span class="brand-chip">{% if brand.name %}{{ brand.name }}{% else %}{{ brand.name }}{% endif %}</span>
+                    {% endfor %}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section section--alt">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Projects / Gallery</p>
+                <h2>From homes to high-load sites, every install is built with care.</h2>
+            </div>
+            <a href="{% url 'projects' %}" class="text-link">Browse gallery</a>
+        </div>
+        <div class="card-grid card-grid--projects">
+            {% for project in projects %}
+            <article class="project-card" data-reveal>
+                <div class="project-cover project-cover--{{ project.category|default:'residential' }}">
+                    {% if project.image %}
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                    {% else %}
+                    <span>{{ project.location }}</span>
+                    {% endif %}
+                </div>
+                <div class="project-card__body">
+                    <div class="project-meta">
+                        <span>{% if project.get_category_display %}{{ project.get_category_display }}{% else %}{{ project.category|title }}{% endif %}</span>
+                        {% if project.capacity_kw %}<span>{{ project.capacity_kw }} kW</span>{% endif %}
+                    </div>
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description }}</p>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container split-grid split-grid--reverse">
+        <div class="visual-panel" data-reveal>
+            <div class="visual-panel__mesh"></div>
+            <div class="visual-panel__content">
+                <p class="eyebrow">Why Choose Us</p>
+                <h2>Built for longevity, backed by service.</h2>
+                <p>We combine strong structural execution, trusted product selection, and timely local support to deliver clean energy systems customers can rely on.</p>
+            </div>
+        </div>
+        <div class="check-grid" data-reveal>
+            {% for point in why_choose_points %}
+            <div class="check-item"><i class="ri-checkbox-circle-fill"></i><span>{{ point }}</span></div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section section--alt">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Testimonials</p>
+                <h2>Customer trust built through practical execution.</h2>
+            </div>
+        </div>
+        <div class="card-grid card-grid--testimonials">
+            {% for item in testimonials %}
+            <article class="testimonial-card" data-reveal>
+                <div class="stars">
+                    {% if item.rating %}
+                        {% for star in "12345" %}
+                        <i class="ri-star-fill {% if forloop.counter <= item.rating %}is-filled{% endif %}"></i>
+                        {% endfor %}
+                    {% else %}
+                        {% for star in "12345" %}
+                        <i class="ri-star-fill is-filled"></i>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <p>{{ item.content }}</p>
+                <div class="testimonial-card__author">
+                    <strong>{{ item.name }}</strong>
+                    <span>{{ item.designation }}</span>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section cta-section">
+    <div class="container cta-panel" data-reveal>
+        <div>
+            <p class="eyebrow">Ready to switch to solar?</p>
+            <h2>Talk to our team for a site visit, brand guidance, or a free quote.</h2>
+        </div>
+        <div class="cta-actions">
+            <a href="{% url 'quote' %}" class="button">Get Free Quote</a>
+            <a href="{% url 'contact' %}" class="button button--secondary">Contact Us</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

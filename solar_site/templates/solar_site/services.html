@@ -1,0 +1,50 @@
+{% extends "solar_site/base.html" %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <p class="eyebrow">Services</p>
+        <h1>Solar services designed for homes, businesses, and industrial performance.</h1>
+        <p>From rooftop consultation to heavy structure work and maintenance support, we deliver practical solar systems with dependable materials and execution.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container card-grid card-grid--services">
+        {% for service in services %}
+        <article class="service-card service-card--full" data-reveal>
+            <div class="icon-badge"><i class="{% if service.icon %}{{ service.icon }}{% else %}ri-sun-foggy-line{% endif %}"></i></div>
+            <h2>{{ service.title }}</h2>
+            <p class="service-card__lead">{{ service.short_description }}</p>
+            <p>{{ service.description }}</p>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="section section--alt">
+    <div class="container split-grid">
+        <div data-reveal>
+            <p class="eyebrow">Execution Focus</p>
+            <h2>Built with strong structure, tested with care.</h2>
+            <p>Our service approach combines product selection, fabrication quality, rooftop planning, and fast support. That helps every system stay reliable long after installation day.</p>
+        </div>
+        <div class="feature-panel" data-reveal>
+            <div class="feature-panel__item">
+                <i class="ri-shield-star-line"></i>
+                <div>
+                    <h3>Warranty-Led Selection</h3>
+                    <p>Panel and inverter recommendations are guided by durability, support quality, and long-term confidence.</p>
+                </div>
+            </div>
+            <div class="feature-panel__item">
+                <i class="ri-tools-fill"></i>
+                <div>
+                    <h3>Structure & Installation Quality</h3>
+                    <p>We focus on proper mounting, neat finishing, safe routing, and long-life structural stability.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

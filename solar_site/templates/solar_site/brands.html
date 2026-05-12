@@ -1,0 +1,26 @@
+{% extends "solar_site/base.html" %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <p class="eyebrow">Brands We Use</p>
+        <h1>Selected brands chosen for performance, availability, and support.</h1>
+        <p>From panels and inverters to wires and structure pipes, we use brand partners that help us deliver dependable installations for long-term results.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container brand-group-grid">
+        {% for key, group in grouped_brands.items %}
+        <article class="brand-group brand-group--page" data-reveal>
+            <h2>{{ group.title }}</h2>
+            <div class="brand-chip-wrap">
+                {% for brand in group.items %}
+                <span class="brand-chip brand-chip--large">{{ brand.name }}</span>
+                {% endfor %}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

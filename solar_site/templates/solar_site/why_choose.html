@@ -1,0 +1,38 @@
+{% extends "solar_site/base.html" %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <p class="eyebrow">Why Choose Us</p>
+        <h1>Why customers trust Sat GreenTech for solar EPC delivery.</h1>
+        <p>We combine strong structures, trusted brands, quick support, and practical site execution to deliver systems built for performance and peace of mind.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container check-grid check-grid--wide">
+        {% for point in why_choose_points %}
+        <div class="check-item" data-reveal><i class="ri-checkbox-circle-fill"></i><span>{{ point }}</span></div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="section section--alt">
+    <div class="container split-grid">
+        <div data-reveal>
+            <p class="eyebrow">Support Promise</p>
+            <h2>Fast service with dependable local follow-up.</h2>
+            <p>Our goal is not only to install a solar system but to stay available for service, guidance, and product support when customers need us. That local responsiveness is part of our value.</p>
+        </div>
+        <div class="detail-card" data-reveal>
+            <h3>What You Get</h3>
+            <ul class="detail-list">
+                <li><span>Panel Warranty</span><strong>25 Years</strong></li>
+                <li><span>Inverter Warranty</span><strong>5-7 Years</strong></li>
+                <li><span>Service Area</span><strong>Bhesan and nearby regions</strong></li>
+                <li><span>Support</span><strong>Fast local response</strong></li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}

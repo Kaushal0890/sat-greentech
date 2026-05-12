@@ -1,0 +1,83 @@
+{% extends "solar_site/base.html" %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <p class="eyebrow">Get Free Quote</p>
+        <h1>Request a solar quote tailored to your site and energy needs.</h1>
+        <p>Share your location, system type, and monthly bill details so our team can guide you toward the right setup.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container contact-layout">
+        <div class="detail-card" data-reveal>
+            <h2>Why request a quote?</h2>
+            <ul class="detail-list detail-list--spacious">
+                <li><span>System Fit</span><strong>Right sizing for your usage and roof space</strong></li>
+                <li><span>Product Guidance</span><strong>Panels, inverters, wiring, and structure options</strong></li>
+                <li><span>Budget Planning</span><strong>Practical recommendations around performance and value</strong></li>
+                <li><span>Local Support</span><strong>Fast communication from a nearby team</strong></li>
+            </ul>
+        </div>
+
+        <div class="form-card" data-reveal>
+            <div class="form-card__head">
+                <h2>Free Quote Form</h2>
+                <p>We use these details to understand your requirement and prepare a useful response.</p>
+            </div>
+            <form class="site-form" data-api-form data-api-endpoint="/api/quote">
+                <div class="form-grid">
+                    <label>
+                        <span>Name</span>
+                        <input type="text" name="name" placeholder="Your name" required>
+                    </label>
+                    <label>
+                        <span>Phone</span>
+                        <input type="tel" name="phone" placeholder="Mobile number" required>
+                    </label>
+                    <label>
+                        <span>Email</span>
+                        <input type="email" name="email" placeholder="Optional email">
+                    </label>
+                    <label>
+                        <span>System Type</span>
+                        <select name="system_type" required>
+                            <option value="">Choose system type</option>
+                            <option>Residential Solar System</option>
+                            <option>Commercial Solar System</option>
+                            <option>Industrial Solar System</option>
+                            <option>On-Grid Solar System</option>
+                            <option>Off-Grid Solar System</option>
+                            <option>Hybrid Solar System</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>Monthly Bill</span>
+                        <input type="text" name="monthly_bill" placeholder="Example: ₹3,000 - ₹5,000">
+                    </label>
+                    <label>
+                        <span>Installation Type</span>
+                        <select name="installation_type">
+                            <option value="">Choose installation type</option>
+                            <option>Rooftop</option>
+                            <option>Ground Mount</option>
+                            <option>Shed Structure</option>
+                            <option>Need Recommendation</option>
+                        </select>
+                    </label>
+                    <label class="form-grid__full">
+                        <span>Address</span>
+                        <input type="text" name="address" placeholder="Project site address" required>
+                    </label>
+                    <label class="form-grid__full">
+                        <span>Message</span>
+                        <textarea name="message" rows="5" placeholder="Any specific requirement, roof details, or business load information"></textarea>
+                    </label>
+                </div>
+                <button type="submit" class="button">Request Quote</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

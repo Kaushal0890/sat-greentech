@@ -1,0 +1,66 @@
+{% extends "solar_site/base.html" %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <p class="eyebrow">About Us</p>
+        <h1>Professional solar EPC service with strong local accountability.</h1>
+        <p>Sat GreenTech Pvt. Ltd. serves customers with practical planning, trusted product choices, and clean on-site execution across residential, commercial, and industrial solar work.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container split-grid">
+        <div data-reveal>
+            <h2>Our story</h2>
+            <p>Built with a clear focus on dependable service, Sat GreenTech Pvt. Ltd. helps customers adopt clean energy with confidence. We work with reliable panel and inverter brands, invest in strong structures, and stay available after installation for maintenance and support.</p>
+            <p>Our work is shaped by the needs of homes, businesses, and industrial sites that want better energy savings, cleaner power, and a smoother installation experience.</p>
+        </div>
+        <div class="detail-card" data-reveal>
+            <h3>Leadership</h3>
+            <ul class="detail-list">
+                <li><span>Owner</span><strong>{{ company.owner }}</strong></li>
+                <li><span>Co-Owner</span><strong>{{ company.co_owners.0 }}</strong></li>
+                <li><span>Co-Owner</span><strong>{{ company.co_owners.1 }}</strong></li>
+                <li><span>Location</span><strong>Bhesan, Gujarat</strong></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section section--alt">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">How We Work</p>
+                <h2>A practical process from survey to support.</h2>
+            </div>
+        </div>
+        <div class="process-grid">
+            {% for step in process_steps %}
+            <article class="process-card" data-reveal>
+                <span>0{{ forloop.counter }}</span>
+                <h3>{{ step.title }}</h3>
+                <p>{{ step.description }}</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container split-grid">
+        <div class="check-grid" data-reveal>
+            {% for point in why_choose_points %}
+            <div class="check-item"><i class="ri-checkbox-circle-fill"></i><span>{{ point }}</span></div>
+            {% endfor %}
+        </div>
+        <div data-reveal>
+            <p class="eyebrow">What Matters to Us</p>
+            <h2>Clean execution, quality products, and long-term relationships.</h2>
+            <p>We treat structure strength, electrical safety, timely communication, and responsive support as part of the product itself. That mindset helps us build systems customers trust for years.</p>
+            <a href="{% url 'quote' %}" class="button">Request a Free Quote</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
