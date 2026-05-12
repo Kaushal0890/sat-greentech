@@ -902,29 +902,7 @@ textarea {
     font-size: 0.84rem;
 }
 
-.toast {
-    position: fixed;
-    left: 50%;
-    bottom: 28px;
-    transform: translateX(-50%) translateY(20px);
-    opacity: 0;
-    padding: 14px 18px;
-    border-radius: 999px;
-    background: #11233d;
-    color: #fff;
-    box-shadow: var(--shadow);
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    z-index: 80;
-}
 
-.toast.is-visible {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
-
-.toast.is-error {
-    background: #922f2f;
-}
 
 [data-reveal] {
     opacity: 0;
